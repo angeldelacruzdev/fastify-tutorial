@@ -9,10 +9,10 @@ const swagger = require("./utils/swagger");
 fastify.register(require("fastify-swagger"), swagger.options);
 
 const productRoutes = require("./routes/products.routes");
+const frutasRoutes = require("./routes/frutas.routes");
 
-productRoutes.forEach((route) => {
-  fastify.route(route);
-});
+productRoutes.forEach((route) => fastify.route(route));
+frutasRoutes.forEach((route) => fastify.route(route));
 
 const start = async () => {
   await fastify.listen(process.env.PORT);
