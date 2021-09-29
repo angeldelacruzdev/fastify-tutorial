@@ -8,6 +8,7 @@ const frutaSchema = new Schema(
     description: String,
     qty: Number,
     category: [],
+    format: String,
   },
   {
     timestamps: true,

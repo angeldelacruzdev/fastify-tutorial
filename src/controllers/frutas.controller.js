@@ -23,6 +23,19 @@ const getFruta = async (request, replay) => {
     replay.code(500).send(error);
   }
 };
+const getFrutaByRangePrice = async (request, replay) => {
+  try {
+    const doc = await Fruta.find({
+      price: { $gt: request.query.price1, $lt: request.query.price2 },
+    });
+    replay.code(200).send({
+      ok: true,
+      data: doc,
+    });
+  } catch (error) {
+    replay.code(500).send(error);
+  }
+};
 
 const createFruta = async (request, replay) => {
   try {
@@ -36,13 +49,9 @@ const createFruta = async (request, replay) => {
 
 const updateFruta = async (request, replay) => {
   try {
-    const doc = await Fruta.findByIdAndUpdate(
-      request.params.id,
-      request.body,
-      {
-        new: true,
-      }
-    );
+    const doc = await Fruta.findByIdAndUpdate(request.params.id, request.body, {
+      new: true,
+    });
     replay.code(200).send(doc);
   } catch (error) {
     replay.code(500).send(error);
@@ -60,6 +69,7 @@ const deleteFruta = async (request, replay) => {
 
 module.exports = {
   getFruta,
+  getFrutaByRangePrice,
   getFrutas,
   createFruta,
   updateFruta,
