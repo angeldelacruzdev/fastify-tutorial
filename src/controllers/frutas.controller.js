@@ -1,4 +1,5 @@
 const Fruta = require("../models/frutas.model");
+const moment = require("moment");
 
 const getFrutas = async (request, replay) => {
   try {
@@ -27,6 +28,31 @@ const getFrutaPriceRange = async (request, replay) => {
   try {
     const doc = await Fruta.find({
       price: { $gte: request.query.price1, $lte: request.query.price2 },
+    });
+    replay.code(200).send({
+      ok: true,
+      data: doc,
+    });
+  } catch (error) {
+    replay.code(500).send(error);
+  }
+};
+const getFrutaDateRange = async (request, replay) => {
+  try {
+    console.log(
+      new Date(
+        moment(request.query.fecha2).format("YYYY-MM-DD[T00:00:00.000Z]")
+      )
+    );
+    const doc = await Fruta.find({
+      createdAt: {
+        $gt: new Date(
+          moment(request.query.fecha1).format("YYYY-MM-DD[T00:00:00.000Z]")
+        ),
+        $lte: new Date(
+          moment(request.query.fecha2).format("YYYY-MM-DD[T00:00:00.000Z]")
+        ),
+      },
     });
     replay.code(200).send({
       ok: true,
@@ -71,6 +97,7 @@ module.exports = {
   getFruta,
   getFrutas,
   getFrutaPriceRange,
+  getFrutaDateRange,
   createFruta,
   updateFruta,
   deleteFruta,

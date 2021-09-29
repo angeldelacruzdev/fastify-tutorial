@@ -17,6 +17,11 @@ const frutasRoutes = [
     handler: frutaCtrl.getFrutaPriceRange,
   },
   {
+    url: "/frutas/date-range",
+    method: "GET",
+    handler: frutaCtrl.getFrutaDateRange,
+  },
+  {
     url: "/frutas",
     method: "POST",
     handler: frutaCtrl.createFruta,
