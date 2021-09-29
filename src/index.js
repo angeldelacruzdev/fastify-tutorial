@@ -5,6 +5,9 @@ require("dotenv").config();
 
 require("./utils/mongoose");
 
+const swagger = require("./utils/swagger");
+fastify.register(require("fastify-swagger"), swagger.options);
+
 const productRoutes = require("./routes/products.routes");
 
 productRoutes.forEach((route) => {
