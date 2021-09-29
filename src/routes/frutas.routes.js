@@ -12,6 +12,11 @@ const frutasRoutes = [
     handler: frutaCtrl.getFruta,
   },
   {
+    url: "/frutas/price-range",
+    method: "GET",
+    handler: frutaCtrl.getFrutaPriceRange,
+  },
+  {
     url: "/frutas",
     method: "POST",
     handler: frutaCtrl.createFruta,
