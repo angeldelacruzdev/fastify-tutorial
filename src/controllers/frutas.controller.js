@@ -39,11 +39,6 @@ const getFrutaPriceRange = async (request, replay) => {
 };
 const getFrutaDateRange = async (request, replay) => {
   try {
-    console.log(
-      new Date(
-        moment(request.query.fecha2).format("YYYY-MM-DD[T00:00:00.000Z]")
-      )
-    );
     const doc = await Fruta.find({
       createdAt: {
         $gt: new Date(
