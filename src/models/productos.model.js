@@ -12,6 +12,10 @@ const productoSchema = new Schema(
       type: Schema.Types.ObjectId,
       refs: "TipoProductos",
     },
+    proveedor: {
+      type: Schema.Types.ObjectId,
+      refs: "Proveedor",
+    },
   },
   {
     timestamps: true,

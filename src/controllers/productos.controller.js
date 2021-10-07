@@ -2,11 +2,10 @@ const Productos = require("../models/productos.model");
 const TipoProductoSchema = require("../models/tipo_productos.model");
 const getProducts = async (request, replay) => {
   try {
-    const doc = await Productos.find().populate(
-      "tipo",
-      "name",
-      "TipoProductos"
-    );
+    const doc = await Productos.find()
+      .populate("tipo", "name", "TipoProductos")
+      .populate("proveedor", "", "Proveedor")
+      .exec();
     replay.code(201).send({
       ok: true,
       data: doc,
