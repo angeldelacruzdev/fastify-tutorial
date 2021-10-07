@@ -1,8 +1,8 @@
-const Proveedor = require("../models/proveedor.model");
+const Sucursal = require("../models/sucursal.model");
 
-const getProveedores = async (request, replay) => {
+const getSucursales = async (request, replay) => {
   try {
-    const doc = await Proveedor.find();
+    const doc = await Sucursal.find();
     replay.code(201).send({
       ok: true,
       data: doc,
@@ -12,9 +12,9 @@ const getProveedores = async (request, replay) => {
   }
 };
 
-const getProveedor = async (request, replay) => {
+const getSucursal = async (request, replay) => {
   try {
-    const doc = await Proveedor.findById(request.params.id);
+    const doc = await Sucursal.findById(request.params.id);
     replay.code(200).send({
       ok: true,
       data: doc,
@@ -24,9 +24,9 @@ const getProveedor = async (request, replay) => {
   }
 };
 
-const createProveedor = async (request, replay) => {
+const createSucursal = async (request, replay) => {
   try {
-    const doc = new Proveedor(request.body);
+    const doc = new Sucursal(request.body);
     await doc.save();
     replay.code(201).send(doc);
   } catch (error) {
@@ -34,9 +34,9 @@ const createProveedor = async (request, replay) => {
   }
 };
 
-const updateProveedor = async (request, replay) => {
+const updateSucursal = async (request, replay) => {
   try {
-    const doc = await Proveedor.findByIdAndUpdate(
+    const doc = await Sucursal.findByIdAndUpdate(
       request.params.id,
       request.body,
       {
@@ -49,9 +49,9 @@ const updateProveedor = async (request, replay) => {
   }
 };
 
-const deleteProveedor = async (request, replay) => {
+const deleteSucursal = async (request, replay) => {
   try {
-    await Proveedor.deleteOne(request.params.id);
+    await Sucursal.Proveedor(request.params.id);
     replay.code(204).send();
   } catch (error) {
     replay.code(500).send(error);
@@ -59,9 +59,9 @@ const deleteProveedor = async (request, replay) => {
 };
 
 module.exports = {
-  getProveedores,
-  getProveedor,
-  createProveedor,
-  updateProveedor,
-  deleteProveedor,
+  getSucursales,
+  getSucursal,
+  createSucursal,
+  updateSucursal,
+  deleteSucursal,
 };

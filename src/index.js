@@ -8,11 +8,13 @@ require("./utils/mongoose");
 const swagger = require("./utils/swagger");
 fastify.register(require("fastify-swagger"), swagger.options);
 
+const sucursalRoutes = require("./routes/sucursal.routes");
 const proveedorRoutes = require("./routes/proveedores.routes");
 const productRoutes = require("./routes/productos.routes");
 const tipoProductosRoutes = require("./routes/tipoProductos.routes");
 const clientesRoutes = require("./routes/clientes.routes");
 
+sucursalRoutes.forEach((route) => fastify.route(route));
 proveedorRoutes.forEach((route) => fastify.route(route));
 productRoutes.forEach((route) => fastify.route(route));
 tipoProductosRoutes.forEach((route) => fastify.route(route));
