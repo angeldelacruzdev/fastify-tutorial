@@ -1,4 +1,4 @@
-# Fastify tutorial from Youtube, Fazt Code
+# Fastify - Supermarket API
 
 [tutorial](https://www.youtube.com/watch?v=DhjkdfeSzXY)
 
