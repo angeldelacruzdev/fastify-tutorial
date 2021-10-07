@@ -1,8 +1,12 @@
-const Product = require("../models/products.model");
-
+const Productos = require("../models/productos.model");
+const TipoProductoSchema = require("../models/tipo_productos.model");
 const getProducts = async (request, replay) => {
   try {
-    const doc = await Product.find();
+    const doc = await Productos.find().populate(
+      "tipo",
+      "name",
+      "TipoProductos"
+    );
     replay.code(201).send({
       ok: true,
       data: doc,
@@ -14,7 +18,7 @@ const getProducts = async (request, replay) => {
 
 const getProduct = async (request, replay) => {
   try {
-    const doc = await Product.findById(request.params.id);
+    const doc = await Productos.findById(request.params.id);
     replay.code(200).send({
       ok: true,
       data: doc,
@@ -26,7 +30,9 @@ const getProduct = async (request, replay) => {
 
 const createProduct = async (request, replay) => {
   try {
-    const doc = new Product(request.body);
+    const data = request.body;
+
+    const doc = new Productos(data);
     await doc.save();
     replay.code(201).send(doc);
   } catch (error) {
@@ -36,7 +42,7 @@ const createProduct = async (request, replay) => {
 
 const updateProduct = async (request, replay) => {
   try {
-    const doc = await Product.findByIdAndUpdate(
+    const doc = await Productos.findByIdAndUpdate(
       request.params.id,
       request.body,
       {
@@ -51,7 +57,7 @@ const updateProduct = async (request, replay) => {
 
 const deleteProduct = async (request, replay) => {
   try {
-    await Product.findByIdAndDelete(request.params.id);
+    await Productos.findByIdAndDelete(request.params.id);
     replay.code(204).send();
   } catch (error) {
     replay.code(500).send(error);

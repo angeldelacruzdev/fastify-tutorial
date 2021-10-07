@@ -1,4 +1,4 @@
-const productCtrl = require("../controllers/product.controller");
+const productCtrl = require("../controllers/productos.controller");
 
 const productRoutes = [
   {
