@@ -1,20 +1,56 @@
 exports.options = {
   routePrefix: "/documentation",
-  exposeRoute: true,
   swagger: {
     info: {
-      title: "Node.js Fastify Mongodb API",
-      description:
-        "Fastify is proudly powering a large ecosystem of organisations and products out there.",
-      version: "0.0.1",
+      title: "Test swagger",
+      description: "Testing the Fastify swagger API",
+      version: "0.1.0",
     },
-    extenalDocs: {
+    externalDocs: {
       url: "https://swagger.io",
-      description: "find more info here",
+      description: "Find more info here",
+    },
+    host: "localhost:3000",
+    schemes: ["http"],
+    consumes: ["application/json"],
+    produces: ["application/json"],
+    tags: [
+      { name: "user", description: "User related end-points" },
+      { name: "code", description: "Code related end-points" },
+    ],
+    definitions: {
+      User: {
+        type: "object",
+        required: ["id", "email"],
+        properties: {
+          id: { type: "string", format: "uuid" },
+          firstName: { type: "string" },
+          lastName: { type: "string" },
+          email: { type: "string", format: "email" },
+        },
+      },
+    },
+    securityDefinitions: {
+      apiKey: {
+        type: "apiKey",
+        name: "apiKey",
+        in: "header",
+      },
     },
   },
-  host: "localhost:3000",
-  schemas: ["http"],
-  cosumes: ["application/json"],
-  produces: ["application/json"],
+  uiConfig: {
+    docExpansion: "full",
+    deepLinking: false,
+  },
+  uiHooks: {
+    onRequest: function (request, reply, next) {
+      next();
+    },
+    preHandler: function (request, reply, next) {
+      next();
+    },
+  },
+  staticCSP: true,
+  transformStaticCSP: (header) => header,
+  exposeRoute: true,
 };
