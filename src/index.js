@@ -9,6 +9,8 @@ const swagger = require("./utils/swagger");
 fastify.register(require("fastify-swagger"), swagger.options);
 
 const paisesRoutes = require("./routes/paises.routes");
+const provinciaRoutes = require("./routes/provincias.routes");
+const sectorRoutes = require("./routes/sectores.routes");
 const sucursalRoutes = require("./routes/sucursal.routes");
 const proveedorRoutes = require("./routes/proveedores.routes");
 const productRoutes = require("./routes/productos.routes");
@@ -16,6 +18,8 @@ const tipoProductosRoutes = require("./routes/tipoProductos.routes");
 const clientesRoutes = require("./routes/clientes.routes");
 
 paisesRoutes.forEach((route) => fastify.route(route));
+provinciaRoutes.forEach((route) => fastify.route(route));
+sectorRoutes.forEach((route) => fastify.route(route));
 sucursalRoutes.forEach((route) => fastify.route(route));
 proveedorRoutes.forEach((route) => fastify.route(route));
 productRoutes.forEach((route) => fastify.route(route));
