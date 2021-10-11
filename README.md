@@ -7,7 +7,7 @@ To start the app on dev mode:
 ```
 npm run dev
 ```
-
+ 
 Discord: https://discord.gg/ytsbfpRv
 
 Documentation api:

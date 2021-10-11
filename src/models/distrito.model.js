@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const DistritoSchema = new Schema(
   {
     name: String,
-    provincia: {
+    municipio: {
       type: Schema.Types.ObjectId,
       refs: "Municipio",
       required: true,

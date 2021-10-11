@@ -10,6 +10,8 @@ fastify.register(require("fastify-swagger"), swagger.options);
 
 const paisesRoutes = require("./routes/paises.routes");
 const provinciaRoutes = require("./routes/provincias.routes");
+const municipioRoutes = require("./routes/municipio.routes");
+const distritoRoutes = require("./routes/distrito.routes");
 const sectorRoutes = require("./routes/sectores.routes");
 const sucursalRoutes = require("./routes/sucursal.routes");
 const proveedorRoutes = require("./routes/proveedores.routes");
@@ -19,6 +21,8 @@ const clientesRoutes = require("./routes/clientes.routes");
 
 paisesRoutes.forEach((route) => fastify.route(route));
 provinciaRoutes.forEach((route) => fastify.route(route));
+municipioRoutes.forEach((route) => fastify.route(route));
+distritoRoutes.forEach((route) => fastify.route(route));
 sectorRoutes.forEach((route) => fastify.route(route));
 sucursalRoutes.forEach((route) => fastify.route(route));
 proveedorRoutes.forEach((route) => fastify.route(route));
