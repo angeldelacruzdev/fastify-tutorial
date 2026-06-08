@@ -6,7 +6,8 @@ require("dotenv").config();
 require("./utils/mongoose");
 
 const swagger = require("./utils/swagger");
-fastify.register(require("fastify-swagger"), swagger.options);
+fastify.register(require("@fastify/swagger"), swagger.swaggerOptions);
+fastify.register(require("@fastify/swagger-ui"), swagger.uiOptions);
 
 const paisesRoutes = require("./routes/paises.routes");
 const provinciaRoutes = require("./routes/provincias.routes");
@@ -31,7 +32,7 @@ tipoProductosRoutes.forEach((route) => fastify.route(route));
 clientesRoutes.forEach((route) => fastify.route(route));
 
 const start = async () => {
-  await fastify.listen(process.env.PORT || 3000);
+  await fastify.listen({ port: process.env.PORT || 3000 });
   fastify.log.info(`Server listening on ${fastify.server.address().port}`);
 };
 
