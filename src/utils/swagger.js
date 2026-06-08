@@ -1,5 +1,4 @@
-exports.options = {
-  routePrefix: "/documentation",
+exports.swaggerOptions = {
   swagger: {
     info: {
       title: "Test swagger",
@@ -26,19 +25,14 @@ exports.options = {
       },
     },
   },
+};
+
+exports.uiOptions = {
+  routePrefix: "/documentation",
   uiConfig: {
     docExpansion: "full",
     deepLinking: false,
   },
-  uiHooks: {
-    onRequest: function (request, reply, next) {
-      next();
-    },
-    preHandler: function (request, reply, next) {
-      next();
-    },
-  },
   staticCSP: true,
   transformStaticCSP: (header) => header,
-  exposeRoute: true,
 };
