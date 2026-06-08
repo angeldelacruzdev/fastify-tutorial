@@ -32,7 +32,7 @@ tipoProductosRoutes.forEach((route) => fastify.route(route));
 clientesRoutes.forEach((route) => fastify.route(route));
 
 const start = async () => {
-  await fastify.listen({ port: process.env.PORT || 3000 });
+  await fastify.listen({ port: process.env.PORT || 3000, host: "0.0.0.0" });
   fastify.log.info(`Server listening on ${fastify.server.address().port}`);
 };
 
